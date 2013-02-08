@@ -84,7 +84,7 @@ typedef NS_OPTIONS(NSUInteger, DMRNotificationViewType)
  Shows the notification view from in target view. Slides the notification view from down if animated. 
  Position is always {0,0}.
  */
--(void)showAnimated:(BOOL)animated;
+-(void)showAnimated:(BOOL)animated inView:(UIView *)view;
 
 /**
  Dismisses the notification view. Slides the notification view up if animated.

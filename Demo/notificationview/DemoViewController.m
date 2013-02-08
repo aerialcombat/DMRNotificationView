@@ -72,7 +72,7 @@
     
     if (button.tag == 1)
     {
-        [DMRNotificationView showWarningInView:self.view
+        [DMRNotificationView showWarningInView:self.navigationController.view
                                        title:@"Warning!"
                                     subTitle:@"Simple method to quickly show a warning"];
     }
@@ -89,7 +89,7 @@
         [notificationView setDidTapHandler:^() {
             [[[UIAlertView alloc] initWithTitle:@"Good job!" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"ok", nil] show];
         }];
-        [notificationView showAnimated:YES];
+        [notificationView showAnimated:YES inView:self.view];
     }
     
     if (button.tag == 3)
@@ -97,7 +97,7 @@
         DMRNotificationView *notificationView = [[DMRNotificationView alloc] initWithTitle:@"Not transparent" subTitle:@"You can disable transparency by setting 'trasparent' to NO" targetView:self.view];
         [notificationView setTintColor:[UIColor scrollViewTexturedBackgroundColor]];        
         [notificationView setIsTransparent:NO];         // Disable tint color transparency
-        [notificationView showAnimated:YES];
+        [notificationView showAnimated:YES inView:self.view];
     }
     
     if (button.tag == 4)

@@ -64,7 +64,7 @@ static CGFloat kNotificationViewShadowOffset = 5.0;                     // Shado
     if (tintColor)
         [notificationView setTintColor:tintColor];
     
-    [notificationView showAnimated:YES];
+    [notificationView showAnimated:YES inView:view];
 }
 
 +(void)showWarningInView:(UIView *)view title:(NSString *)title subTitle:(NSString *)subTitle
@@ -146,18 +146,24 @@ static CGFloat kNotificationViewShadowOffset = 5.0;                     // Shado
 #pragma mark -
 #pragma mark Public
 
--(void)showAnimated:(BOOL)animated
+-(void)showAnimated:(BOOL)animated inView:(UIView *)view
 {
     CGSize expectedSize = [self expectedSize];
     [self setFrame:CGRectMake(0.0, 0.0, expectedSize.width, expectedSize.height)];
     
+    
+    if ([NSStringFromClass([view class]) isEqualToString:@"UILayoutContainerView"]) {
+        self.center = CGPointMake(self.center.x, self.center.y + 20);
+    }
     CGPoint animateToCenter = self.center;
     [self setCenter:CGPointMake(self.center.x, self.center.y-self.bounds.size.height)];
     [_targetView addSubview:self];
     
+    
+    
     if (animated)
     {
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseOut animations:^{
             [self setCenter:animateToCenter];
         } completion:nil];
     }
@@ -178,7 +184,7 @@ static CGFloat kNotificationViewShadowOffset = 5.0;                     // Shado
 {
     if (animated)
     {
-        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseOut animations:^{
             [self setCenter:CGPointMake(self.center.x, -self.bounds.size.height)];
         } completion:^(BOOL finished) {
             [self removeFromSuperview];
