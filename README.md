@@ -43,7 +43,7 @@ You can use the default initialiser for advanced usage.
         // be notified when user taps on panel
     }];
 
-    [notificationView showAnimated:YES];
+    [notificationView showAnimated:YES inView:self.view];
 
 
 ### Issues
